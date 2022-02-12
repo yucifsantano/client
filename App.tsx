@@ -1,3 +1,7 @@
+//Referencia de navegación:
+//https://www.youtube.com/watch?v=lM0g5aR_aDo
+
+
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
