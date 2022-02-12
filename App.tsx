@@ -21,7 +21,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='{Login}'>
         {routes.map((r,i) => (
-          <Stack.Screen key={i} name={r.name}>
+          <Stack.Screen key={i} name={r.name} options={{headerShown: false}}>
             {(props) => <r.component name={r.name} {...props} />}
           </Stack.Screen>
         ))}
