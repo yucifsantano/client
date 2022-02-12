@@ -1,14 +1,14 @@
 //Referencia de navegación:
 //https://www.youtube.com/watch?v=lM0g5aR_aDo
 
-
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import { useLogging } from './src/hooks/useLogging';
-import ButtonGradient from './src/components/ButtonGradient';
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import routes from './src/config/routes';
 
-const  { width, height } = Dimensions.get('window');
+const Stack = createStackNavigator();
 
 export default function App() {
   const [logging] = useLogging('Application');
@@ -18,64 +18,14 @@ export default function App() {
   }, [logging]);
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Text style={styles.titulo}>Wallet</Text>
-      <Text style={styles.subTitle}>Inicie sesión en su cuenta</Text>
-      <TextInput
-        placeholder='minombre@correo.com'
-        style={styles.textInput}
-      />
-      <TextInput
-        placeholder='clave de acceso'
-        style={styles.textInput}
-        secureTextEntry={true}
-      />
-      <Text style={styles.forgotPassword}>
-        ¿Olvidaste tu contraseña?
-      </Text>
-      <ButtonGradient />
-      <Text style={styles.forgotPassword}>
-        No tengo una cuenta.
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='{Login}'>
+        {routes.map((r,i) => (
+          <Stack.Screen key={i} name={r.name}>
+            {(props) => <r.component name={r.name} {...props} />}
+          </Stack.Screen>
+        ))}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffe2b5',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titulo: {
-    fontSize:80,
-    color:'#ea9000',
-    fontWeight:'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.20)',
-    textShadowOffset: {width: 0, height: 1},
-    textShadowRadius: 10    
-  },
-  subTitle: {
-    fontSize:20,
-    color:'gray',
-  },
-  textInput: {
-    padding:10,
-    paddingStart:30,
-    width:'80%',
-    height:50,
-    marginTop:20,
-    borderRadius: 15,
-    backgroundColor: '#fff',
-  },
-  forgotPassword: {
-    fontSize: 14,
-    color: 'gray',
-    marginTop:20
-  },
-  button: {
-
-  }
-});
