@@ -6,7 +6,7 @@ import ButtonGradient from '../../components/ButtonGradient';
 import { IStackScreenProps } from '../../library/StackScreenProps';
 
 
-const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
+const CreateAccountScreen: React.FunctionComponent<IStackScreenProps> = props => {
   const [logging] = useLogging('Application');
   const { navigation, route, nameProp } = props;
 
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+export default CreateAccountScreen;

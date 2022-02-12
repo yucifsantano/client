@@ -22,7 +22,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='{Login}'>
         {routes.map((r,i) => (
           <Stack.Screen key={i} name={r.name} options={{headerShown: false}}>
-            {(props) => <r.component name={r.name} {...props} />}
+            {(props) => <r.component nameProp={r.name} {...props} />}
           </Stack.Screen>
         ))}
       </Stack.Navigator>
