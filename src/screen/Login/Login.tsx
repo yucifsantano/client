@@ -34,7 +34,7 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
       >
         ¿Olvidaste tu contraseña?
       </Text>
-      <ButtonGradient />
+      <ButtonGradient title='Registrarse' />
       <Text 
         style={styles.forgotPassword}
         onPress={(() => navigation.navigate('CreateAccount'))}

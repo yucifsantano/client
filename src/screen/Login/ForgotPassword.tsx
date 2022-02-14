@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native';
 import { useLogging } from '../../hooks/useLogging';
 import ButtonGradient from '../../components/ButtonGradient';
+import HeaderBar from '../../components/HeaderBar';
 import { IStackScreenProps } from '../../library/StackScreenProps';
-
 
 const ForgotPasswordScreen: React.FunctionComponent<IStackScreenProps> = props => {
   const [logging] = useLogging('Application');
@@ -15,43 +15,68 @@ const ForgotPasswordScreen: React.FunctionComponent<IStackScreenProps> = props =
   }, [logging]);
 
   return (
+
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.titulo}>Wallet</Text>
-      <Text style={styles.subTitle}>Inicie sesión en su cuenta</Text>
-      <TextInput
-        placeholder='minombre@correo.com'
-        style={styles.textInput}
-      />
-      <TextInput
-        placeholder='clave de acceso'
-        style={styles.textInput}
-        secureTextEntry={true}
-      />
-      <Text 
-        style={styles.forgotPassword}
-        onPress={(() => navigation.navigate('Forgot'))}
-      >
-        ¿Olvidaste tu contraseña?
-      </Text>
-      <ButtonGradient />
-      <Text 
-        style={styles.forgotPassword}
-        onPress={(() => navigation.navigate('CreateAccount'))}
-      >
-        No tengo una cuenta.
-      </Text>
+
+      <View style={styles.navigation}>
+        <HeaderBar title='Recuperar contraseña' />
+      </View>
+
+      <View style={styles.body}>
+        <Text style={styles.titulo}>Wallet</Text>
+        <ScrollView>
+          <View style={styles.formulario}>
+            <Text style={styles.instructions}>
+              Te llegará un código a tu correo, este deberas 
+              de ingresar para verificar autenticidad.
+            </Text>
+
+            <Text>Ingresa tu correo electrónico</Text>
+            <TextInput
+              placeholder='minombre@correo.com'
+              style={styles.textInput}
+            />
+
+            <ButtonGradient title='Validar' />
+          </View>
+        </ScrollView>
+      </View>
+
+      <View style={styles.footer}>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#ffe2b5',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:1,
+    backgroundColor: '#ffe2b5'
   },
+  navigation: {
+      flex:1,
+  },
+  body: {
+      flex:10,
+      alignItems: 'center',
+  },
+  footer: {
+    flex:1,
+  },
+  formulario: {
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  instructions: {
+    fontSize:20,
+    color:'#000',
+    fontWeight:'bold',
+    textAlign:'center',
+    paddingBottom:35,
+  },
+
   titulo: {
     fontSize:80,
     color:'#ea9000',
@@ -73,14 +98,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#fff',
   },
-  forgotPassword: {
-    fontSize: 14,
-    color: 'gray',
-    marginTop:20
-  },
-  button: {
-
-  }
 });
 
 export default ForgotPasswordScreen;
