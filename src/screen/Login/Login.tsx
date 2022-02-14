@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import { useLogging } from '../../hooks/useLogging';
 import { IStackScreenProps } from '../../library/StackScreenProps';
+import { COLORS, SIZES, FONTS } from "../../../constants"
 
 import ButtonGradient from '../../components/ButtonGradient';
 import InputLabel from '../../components/InputLabel';
@@ -23,7 +24,7 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
       <View style={styles.navigation}></View>
 
       <View style={styles.body}>
-        <Text style={styles.titulo}>Wallet</Text>
+        <Text style={FONTS.headerapp}>Wallet</Text>
         <Text style={styles.subTitle}>Inicie sesión en su cuenta</Text>
 
         <InputLabel
@@ -78,14 +79,6 @@ const styles = StyleSheet.create({
     flex:1,
   },
 
-  titulo: {
-    fontSize:80,
-    color:'#ea9000',
-    fontWeight:'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.20)',
-    textShadowOffset: {width: 0, height: 1},
-    textShadowRadius: 10    
-  },
   subTitle: {
     fontSize:20,
     color:'gray',
