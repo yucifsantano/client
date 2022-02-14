@@ -41,7 +41,6 @@ export const SIZES = {
 };
 
 export const FONTS = {
-    headerapp: { fontFamily: "PoiretOne-Regular", fontSize: 80, lineHeight: 136, color: COLORS.colorTitleApp, fontWeight:'bold', textShadowColor: 'rgba(0, 0, 0, 0.20)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 10 },
     h1: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h1, lineHeight: 36 },
     h2: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h2, lineHeight: 30 },
     h3: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h3, lineHeight: 22 },
