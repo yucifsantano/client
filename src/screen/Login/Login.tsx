@@ -2,8 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import { useLogging } from '../../hooks/useLogging';
-import ButtonGradient from '../../components/ButtonGradient';
 import { IStackScreenProps } from '../../library/StackScreenProps';
+
+import ButtonGradient from '../../components/ButtonGradient';
+import InputLabel from '../../components/InputLabel';
 
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
@@ -17,30 +19,42 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.titulo}>Wallet</Text>
-      <Text style={styles.subTitle}>Inicie sesión en su cuenta</Text>
-      <TextInput
-        placeholder='minombre@correo.com'
-        style={styles.textInput}
-      />
-      <TextInput
-        placeholder='clave de acceso'
-        style={styles.textInput}
-        secureTextEntry={true}
-      />
-      <Text 
-        style={styles.forgotPassword}
-        onPress={(() => navigation.navigate('Forgot'))}
-      >
-        ¿Olvidaste tu contraseña?
-      </Text>
-      <ButtonGradient title='Registrarse' />
-      <Text 
-        style={styles.forgotPassword}
-        onPress={(() => navigation.navigate('CreateAccount'))}
-      >
-        No tengo una cuenta.
-      </Text>
+
+      <View style={styles.navigation}></View>
+
+      <View style={styles.body}>
+        <Text style={styles.titulo}>Wallet</Text>
+        <Text style={styles.subTitle}>Inicie sesión en su cuenta</Text>
+
+        <InputLabel
+          labelText='Ingresa tu correo electrónico'
+          placeHolder='tucorrreo@correo.com'
+          KeyboardType='email-address'
+        />
+        <InputLabel
+          labelText='Clave de acceso'
+          secureText={true}
+        />
+
+        <Text 
+          style={styles.forgotPassword}
+          onPress={(() => navigation.navigate('Forgot'))}
+        >
+          ¿Olvidaste tu contraseña?
+        </Text>
+
+        <ButtonGradient title='INGRESAR' />
+
+        <Text 
+          style={styles.forgotPassword}
+          onPress={(() => navigation.navigate('CreateAccount'))}
+        >
+          No tengo una cuenta.
+        </Text>
+
+      </View>
+
+      <View style={styles.footer}></View>
     </View>
   );
 }
@@ -52,6 +66,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  navigation: {
+      flex:1,
+  },
+  body: {
+    flex:10,
+    alignItems: 'center',
+    width: '90%',
+  },
+  footer: {
+    flex:1,
+  },
+
   titulo: {
     fontSize:80,
     color:'#ea9000',
@@ -63,6 +89,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize:20,
     color:'gray',
+    marginBottom: 65,
   },
   textInput: {
     padding:10,

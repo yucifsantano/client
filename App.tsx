@@ -8,6 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import routes from './src/config/routes';
 
+export interface IlabelText {
+  textlabel: string | any;
+}
+
 const Stack = createStackNavigator();
 
 export default function App() {

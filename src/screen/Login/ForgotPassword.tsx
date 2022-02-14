@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { useLogging } from '../../hooks/useLogging';
+import { IStackScreenProps } from '../../library/StackScreenProps';
+
 import ButtonGradient from '../../components/ButtonGradient';
 import HeaderBar from '../../components/HeaderBar';
-import { IStackScreenProps } from '../../library/StackScreenProps';
+import InputLabel from '../../components/InputLabel';
 
 const ForgotPasswordScreen: React.FunctionComponent<IStackScreenProps> = props => {
   const [logging] = useLogging('Application');
@@ -32,10 +34,15 @@ const ForgotPasswordScreen: React.FunctionComponent<IStackScreenProps> = props =
               de ingresar para verificar autenticidad.
             </Text>
 
-            <Text>Ingresa tu correo electrónico</Text>
-            <TextInput
-              placeholder='minombre@correo.com'
-              style={styles.textInput}
+            <InputLabel
+              labelText='Ingresa tu correo electrónico'
+              placeHolder='tucorrreo@correo.com'
+              KeyboardType='email-address'
+            />
+            <InputLabel
+              labelText='Código de autenticidad'
+              placeHolder='9999'
+              KeyboardType='numeric'
             />
 
             <ButtonGradient title='Validar' />
@@ -74,9 +81,9 @@ const styles = StyleSheet.create({
     color:'#000',
     fontWeight:'bold',
     textAlign:'center',
-    paddingBottom:35,
+    paddingTop:75,
+    paddingBottom:45,
   },
-
   titulo: {
     fontSize:80,
     color:'#ea9000',
@@ -84,19 +91,6 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.20)',
     textShadowOffset: {width: 0, height: 1},
     textShadowRadius: 10    
-  },
-  subTitle: {
-    fontSize:20,
-    color:'gray',
-  },
-  textInput: {
-    padding:10,
-    paddingStart:30,
-    width:'80%',
-    height:50,
-    marginTop:20,
-    borderRadius: 15,
-    backgroundColor: '#fff',
   },
 });
 
