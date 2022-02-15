@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { COLORS, SIZES, FONTS } from '../../constants'
 
 export default function ButtonGradient({title}:{title:string}) {
     return (
@@ -9,11 +10,10 @@ export default function ButtonGradient({title}:{title:string}) {
             onPress={() => console.log("Ir a pantalla inicial")}
         >
             <LinearGradient 
-                colors={['#ff9900', '#d88500']}
+                colors={[COLORS.colorDegradadoBeginning, COLORS.colorDegradadoFinal]}
                 start={{x:0,y:1}}
                 end={{x:1,y:0}}
                 style={styles.button}
-                
             >
                 <Text style={styles.text}>
                     {title}
@@ -30,9 +30,7 @@ const styles = StyleSheet.create({
         marginTop:60,
     },
     text: {
-        fontSize: 14,
-        color: '#000',
-        fontWeight:'bold',
+        ...FONTS.textButton
     },
     button: {
         width:'95%',

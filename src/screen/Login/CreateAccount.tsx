@@ -8,6 +8,8 @@ import ButtonGradient from '../../components/ButtonGradient';
 import HeaderBar from '../../components/HeaderBar';
 import InputLabel from '../../components/InputLabel';
 
+import { COLORS, SIZES, FONTS } from '../../../constants/theme';
+
 const CreateAccountScreen: React.FunctionComponent<IStackScreenProps> = props => {
   const [logging] = useLogging('Application');
   const { navigation, route, nameProp } = props;
@@ -81,22 +83,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   instructions: {
-    fontSize:20,
-    color:'#000',
-    fontWeight:'bold',
-    textAlign:'center',
-    paddingTop:75,
+    paddingTop:35,
     paddingBottom:45,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 22,
+    paddingRight: 22,
+    ...FONTS.textInstructions,
   },
   titulo: {
-    fontSize:80,
-    color:'#ea9000',
-    fontWeight:'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.20)',
-    textShadowOffset: {width: 0, height: 1},
-    textShadowRadius: 10    
+    lineHeight: 136, 
+    textShadowOffset: {width: 0, height: 1}, 
+    textShadowRadius: SIZES.radius,
+    ...FONTS.headerapp
   },
 });
 

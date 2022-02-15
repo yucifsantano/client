@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get("window");
 export const COLORS = {
     colorBackground: '#ffe2b5',
     colorTitleApp: "#ea9000",
-    colorSubTitle: "#ea9000",
+    colorSubTitle: "#ff9900",
     colorLabelText: "#777777",
     colorText: "#494949",
     
@@ -15,6 +15,10 @@ export const COLORS = {
 
     colorAlert: '#ff7777',
     colorShadow: 'rgba(0, 0, 0, 0.20)',
+
+    colorDegradadoBeginning: '#ff9900',
+    colorDegradadoIntermediate: '#ef8f00',
+    colorDegradadoFinal: '#d88500',
 
 };
 export const SIZES = {
@@ -75,12 +79,29 @@ export const FONTS = {
         fontSize: SIZES.text31,
         color: COLORS.colorText,
     },
+    textHeader: {
+        fontFamily: "Staatliches", 
+        fontSize: SIZES.text20,
+        color: COLORS.colorSubTitle,
+    },
     textInpunt: {
         fontFamily: "PoiretOne", 
         fontSize: SIZES.text20, 
         color: COLORS.colorInputText, 
         backgroundColor: COLORS.colorInputbackground, 
         borderColor:COLORS.colorInputBorder 
+    },
+    textButton: {
+        fontFamily: "Staatliches",
+        fontSize: SIZES.text20,
+        color: COLORS.colorInputText,
+    },
+    textInstructions: {
+        fontFamily: "Staatliches",
+        fontSize: SIZES.text20,
+        color: COLORS.colorTitleApp,
+        textAlign:'center',
+        
     }
 };
 

@@ -6,6 +6,7 @@ import {
     Image
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
+import { COLORS, SIZES, FONTS, icons } from '../../constants'
 
 const HeaderBar = ({title}:{title:string | any}) => {
 
@@ -14,6 +15,7 @@ const HeaderBar = ({title}:{title:string | any}) => {
     return (
         <View style={{
             paddingTop:35,
+            paddingBottom: 15,
             paddingHorizontal:24,
             flexDirection: 'row',
         }}>
@@ -26,12 +28,12 @@ const HeaderBar = ({title}:{title:string | any}) => {
                     onPress={() => navigation.goBack()}
                 >
                     <Image 
-                        source={require('../../assets/icons/back_arrow.png')}
+                        source={ icons.back_arrow }
                         resizeMode="contain"
                         style={{
                             width:25,
                             height:25,
-                            tintColor: "#000"
+                            tintColor: COLORS.colorTitleApp,
                         }}
                     />
                     <Text 
@@ -39,7 +41,8 @@ const HeaderBar = ({title}:{title:string | any}) => {
                             flex:1,
                             textAlign:'left',
                             paddingLeft:10,
-                            textTransform:'uppercase'
+                            textTransform:'uppercase',
+                            ...FONTS.textHeader
                         }}
                     >
                         {title}
