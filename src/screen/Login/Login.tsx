@@ -78,14 +78,10 @@ const styles = StyleSheet.create({
     flex:1,
   },
   title: {
-    fontSize: 80, 
     lineHeight: 136, 
-    fontWeight:'bold',
-    color: COLORS.colorTitleApp, 
-    textShadowColor: COLORS.colorShadow, 
     textShadowOffset: {width: 0, height: 1}, 
     textShadowRadius: SIZES.radius,
-
+    ...FONTS.headerapp
   },
   subTitle: {
     ...FONTS.subtitle

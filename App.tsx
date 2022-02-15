@@ -15,7 +15,8 @@ import AppLoading from 'expo-app-loading';
 const fetchFont = () => {
   return Font.loadAsync({
     "PoiretOne": require("./assets/fonts/PoiretOne-Regular.ttf"),
-    "Shalimar": require("./assets/fonts/Shalimar-Regular.ttf")
+    "Shalimar": require("./assets/fonts/Shalimar-Regular.ttf"),
+    "Staatliches": require("./assets/fonts/Staatliches-Regular.ttf")
   })
 }
 

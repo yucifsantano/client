@@ -25,6 +25,7 @@ const InputLabel = (
             <Text style={styles.labelInput}>{labelText}</Text>
             <TextInput
                 placeholder={placeHolder}
+                placeholderTextColor={ COLORS.colorInputPlaceholder}
                 style={{...styles.textInput}}
                 keyboardType={KeyboardType}
                 secureTextEntry={secureText}
@@ -45,9 +46,6 @@ const styles = StyleSheet.create({
       textAlign: 'right',
       ...FONTS.label30,
     },
-    inpuPlaceholder: {
-        color: COLORS.green,
-    },
     textInput: {
       padding:10,
       width:'90%',
@@ -56,6 +54,6 @@ const styles = StyleSheet.create({
       borderRadius: 0,
       borderBottomWidth:0.5,
       alignItems: 'flex-start',
-      ...FONTS.input30,
+      ...FONTS.textInpunt,
     },
   });

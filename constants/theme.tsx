@@ -6,10 +6,12 @@ export const COLORS = {
     colorTitleApp: "#ea9000",
     colorSubTitle: "#ea9000",
     colorLabelText: "#777777",
+    colorText: "#494949",
     
-    colorInputText: "#494949",
+    colorInputText: "#000",
     colorInputbackground: '#ffdca5',
     colorInputBorder: "#ea9000",
+    colorInputPlaceholder: "#ea9000",
 
     colorAlert: '#ff7777',
     colorShadow: 'rgba(0, 0, 0, 0.20)',
@@ -52,9 +54,16 @@ export const FONTS = {
     input30: { 
         fontFamily: "PoiretOne", 
         fontSize: SIZES.text20, 
-        color: COLORS.colorInputText, 
+        color: COLORS.colorText, 
         backgroundColor: COLORS.colorInputbackground, 
         borderColor:COLORS.colorInputBorder 
+    },
+    headerapp: {
+        fontFamily: "Staatliches", 
+        fontSize: 80,
+        color: COLORS.colorTitleApp, 
+        textShadowColor: COLORS.colorShadow, 
+
     },
     subtitle: {
         fontFamily: "Shalimar", 
@@ -64,7 +73,14 @@ export const FONTS = {
     textDefault: {
         fontFamily: "Shalimar", 
         fontSize: SIZES.text31,
-        color: COLORS.colorInputText,
+        color: COLORS.colorText,
+    },
+    textInpunt: {
+        fontFamily: "PoiretOne", 
+        fontSize: SIZES.text20, 
+        color: COLORS.colorInputText, 
+        backgroundColor: COLORS.colorInputbackground, 
+        borderColor:COLORS.colorInputBorder 
     }
 };
 
