@@ -5,7 +5,7 @@ import {
     StyleSheet,
     TextInput,
 } from 'react-native';
-
+import { COLORS, SIZES, FONTS } from '../../constants'
 
 const InputLabel = (
     {
@@ -38,12 +38,15 @@ export default InputLabel;
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        alignItems:'center',
+        alignItems: 'center',
     },
     labelInput: {
-      color: 'gray',
       top:19,
-      height: 20,
+      textAlign: 'right',
+      ...FONTS.label30,
+    },
+    inpuPlaceholder: {
+        color: COLORS.green,
     },
     textInput: {
       padding:10,
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
       marginTop:20,
       borderRadius: 0,
       borderBottomWidth:0.5,
-      borderColor:'#ea9000',
-      backgroundColor: '#ffdca5',
+      alignItems: 'flex-start',
+      ...FONTS.input30,
     },
   });

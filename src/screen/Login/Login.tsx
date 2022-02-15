@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import { useLogging } from '../../hooks/useLogging';
 import { IStackScreenProps } from '../../library/StackScreenProps';
 
 import ButtonGradient from '../../components/ButtonGradient';
 import InputLabel from '../../components/InputLabel';
+import { COLORS, SIZES, FONTS } from '../../../constants/theme';
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
   const [logging] = useLogging('Application');
@@ -61,9 +62,9 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffe2b5',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: COLORS.colorBackground,
   },
   navigation: {
       flex:1,
@@ -77,33 +78,21 @@ const styles = StyleSheet.create({
     flex:1,
   },
   title: {
-    marginBottom: 65,
     fontSize: 80, 
     lineHeight: 136, 
-    color: '#ea9000', 
-    fontWeight:'bold', 
-    textShadowColor: 'rgba(0, 0, 0, 0.20)', 
+    fontWeight:'bold',
+    color: COLORS.colorTitleApp, 
+    textShadowColor: COLORS.colorShadow, 
     textShadowOffset: {width: 0, height: 1}, 
-    textShadowRadius: 10    
+    textShadowRadius: SIZES.radius,
+
   },
   subTitle: {
-    fontSize:20,
-    color:'gray',
-    marginBottom: 65,
-  },
-  textInput: {
-    padding:10,
-    paddingStart:30,
-    width:'80%',
-    height:50,
-    marginTop:20,
-    borderRadius: 15,
-    backgroundColor: '#fff',
+    ...FONTS.subtitle
   },
   forgotPassword: {
-    fontSize: 14,
-    color: 'gray',
-    marginTop:20
+    marginTop:20,
+    ...FONTS.textDefault,
   },
   button: {
 

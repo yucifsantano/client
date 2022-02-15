@@ -2,37 +2,39 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const COLORS = {
+    colorBackground: '#ffe2b5',
     colorTitleApp: "#ea9000",
+    colorSubTitle: "#ea9000",
+    colorLabelText: "#777777",
+    
+    colorInputText: "#494949",
+    colorInputbackground: '#ffdca5',
+    colorInputBorder: "#ea9000",
 
+    colorAlert: '#ff7777',
+    colorShadow: 'rgba(0, 0, 0, 0.20)',
 
-    primary: "#7F5DF0",     // Light purple
-    secondary: "#5D2DFD",   // Dark purple
-
-    white: "#fff",
-    black: "#000000",
-    green: "#37E39F",
-    red: "#F9A8BA",
-    gray: "#6A6A6A",
-    lightGray: "#dbdbdb",
-    lightGray1: "#f5f6fa"
 };
 export const SIZES = {
-    // global sizes
-    base: 8,
-    font: 14,
+    //global sizes
     radius: 12,
     padding: 24,
 
-    // font sizes
+    //font sizes
+    h0: 50,
     h1: 30,
     h2: 22,
     h3: 16,
     h4: 14,
-    body1: 30,
-    body2: 22,
-    body3: 16,
-    body4: 14,
-    body5: 12,
+    text8: 8,
+    text10: 10,
+    text12: 12,
+    text14: 14,
+    text16: 16,
+    text20: 20,
+    text22: 22,
+    text30: 30,
+    text31: 31,
 
     // app dimensions
     width,
@@ -41,15 +43,29 @@ export const SIZES = {
 };
 
 export const FONTS = {
-    h1: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h1, lineHeight: 36 },
-    h2: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h2, lineHeight: 30 },
-    h3: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h3, lineHeight: 22 },
-    h4: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.h4, lineHeight: 22 },
-    body1: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.body1, lineHeight: 36 },
-    body2: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.body2, lineHeight: 30 },
-    body3: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.body3, lineHeight: 22 },
-    body4: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.body4, lineHeight: 22 },
-    body5: { fontFamily: "PoiretOne-Regular", fontSize: SIZES.body5, lineHeight: 22 },
+    label30: { 
+        fontFamily: "Shalimar", 
+        fontSize: SIZES.text30, 
+        lineHeight: 36, 
+        color: COLORS.colorLabelText
+    },
+    input30: { 
+        fontFamily: "PoiretOne", 
+        fontSize: SIZES.text20, 
+        color: COLORS.colorInputText, 
+        backgroundColor: COLORS.colorInputbackground, 
+        borderColor:COLORS.colorInputBorder 
+    },
+    subtitle: {
+        fontFamily: "Shalimar", 
+        fontSize: 50,
+        color: COLORS.colorSubTitle,
+    },
+    textDefault: {
+        fontFamily: "Shalimar", 
+        fontSize: SIZES.text31,
+        color: COLORS.colorInputText,
+    }
 };
 
 

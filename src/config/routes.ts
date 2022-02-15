@@ -4,8 +4,6 @@ import LoginScreen from "../screen/Login/Login";
 import ForgotPasswordScreen from "../screen/Login/ForgotPassword";
 import CreateAccountScreen  from "../screen/Login/CreateAccount";
 
-
-
 const routes: IRouteProps[] = [
     {
         name: 'Login',
