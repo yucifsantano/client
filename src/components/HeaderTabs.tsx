@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Modal, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
@@ -7,6 +7,7 @@ import { COLORS, FONTS, SIZES, icons } from '../../constants'
 const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const [modalSearch, setModalSearch] = useState(false);
     const [modalNotification, setModalNotification] = useState(false);
+    const [modalMenuRight, setMenuRight] = useState(false);
 
     const navigation = useNavigation();
     
@@ -40,6 +41,19 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
                 </View>
             </Modal>
 
+            <Modal visible={modalMenuRight} animationType='fade' transparent={true} >
+                <View style={styles.modalContainerMenu}>
+                    <View style={{alignItems:'flex-end'}}>
+                        <Ionicons 
+                            name='close'
+                            size={24}
+                            onPress={() => setMenuRight(false)}
+                        />
+                    </View>
+                    <Text>Menu!</Text>
+                </View>
+            </Modal>
+
             <View style={styles.containerLeft}>
                 <TouchableOpacity
                     style={styles.containerTocuhable}
@@ -56,7 +70,7 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
                 <TouchableOpacity style={styles.containerTocuhable}>
                     {busqueda ? <Ionicons onPress={(() => setModalSearch(true))} style={styles.iconSearch} name='search' size={25} color={COLORS.colorTitleApp} /> : null }
                     {notifications ? <Ionicons onPress={(() => setModalNotification(true))} style={styles.iconNotification} name='notifications' size={25} color={COLORS.colorTitleApp} /> : null }
-                    {menuVertical ? <Ionicons onPress={(() => console.log('Pantalla de menú'))} style={styles.iconEllipsis } name='ellipsis-vertical' size={25} color={COLORS.colorTitleApp} /> : null }
+                    {menuVertical ? <Ionicons onPress={(() => setMenuRight(true))} style={styles.iconEllipsis } name='ellipsis-vertical' size={25} color={COLORS.colorTitleApp} /> : null }
                 </TouchableOpacity>
             </View>
         </View>
@@ -74,8 +88,34 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: COLORS.colorSubTitle,
         backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+        shadowOpacity: 0.75,
+        shadowRadius: 4,
+        elevation: 15,        
     },
-
+    modalContainerMenu: {
+        width: '75%',
+        height: '45%',
+        marginLeft: '23%',
+        marginTop: 55,
+        borderWidth: 0.75,
+        borderRadius: 8,
+        padding: 10,
+        borderColor: COLORS.colorSubTitle,
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+        shadowOpacity: 0.75,
+        shadowRadius: 4,
+        elevation: 15,        
+    },
     container: {
         paddingTop:35,
         paddingBottom: 15,
