@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text } from 'react-native';
-import { COLORS, SIZES, FONTS } from '../../../constants/theme';
+import { COLORS } from '../../../constants/theme';
 
 import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
-
 
 export default function HomeScreen() {
     return (
@@ -13,11 +12,16 @@ export default function HomeScreen() {
             <StatusBar style="auto" />
             <HeaderTabs 
                 title={'Inicio'}
+                backicon={true}
+                busqueda={true}
+                notifications={true}
+                menuVertical={true}
             />
 
-
             <View style={styles.body}>
-                <Text>Cuerpo</Text>
+                <Text style={{fontFamily: 'Shalimar', fontSize: 75}}>Cuerpo de inicio</Text>
+                <Text style={{fontFamily: 'Staatliches', fontSize: 55}}>Cuerpo de inicio</Text>
+                <Text style={{fontFamily: 'PoiretOne', fontSize: 45}}>Cuerpo de inicio</Text>
             </View>
 
             <CopyrightLabel />

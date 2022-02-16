@@ -7,6 +7,7 @@ export const COLORS = {
     colorSubTitle: "#ff9900",
     colorLabelText: "#777777",
     colorText: "#494949",
+    colorIcon: "#bc7100",
     
     colorInputText: "#000",
     colorInputbackground: '#ffdca5',

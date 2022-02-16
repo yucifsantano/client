@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS, SIZES, FONTS } from '../../../constants/theme';
-import { StatusBar } from 'expo-status-bar'
+import { COLORS } from '../../../constants/theme';
 
 //Screens
 import HomeScreen from '../Main/HomeScreen';
@@ -47,7 +46,7 @@ export default function MainContainer() {
             <Tab.Screen name={homeName} component={HomeScreen} options={{ headerShown: false, tabBarActiveTintColor: COLORS.colorTitleApp }} />
             <Tab.Screen name={walletName} component={WalletScreen}options={{ headerShown: false, tabBarActiveTintColor: COLORS.colorTitleApp }} />
             <Tab.Screen name={qrcodeName} component={QRcodeScreen}options={{ headerShown: false, tabBarActiveTintColor: COLORS.colorTitleApp }} />
-            <Tab.Screen name={pricetagName} component={PricetagScreen}options={{ headerShown: false, tabBarActiveTintColor: COLORS.colorTitleApp,  tabBarBadge: 3 }} />
+            <Tab.Screen name={pricetagName} component={PricetagScreen}options={{ headerShown: false, tabBarActiveTintColor: COLORS.colorTitleApp, tabBarBadge: 3 }} />
             <Tab.Screen name={settingsName} component={SettingScreen}options={{ headerShown: false, tabBarActiveTintColor: COLORS.colorTitleApp }} />
         </Tab.Navigator>
     )

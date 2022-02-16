@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import { COLORS, SIZES, FONTS, icons } from '../../constants'
+import { Ionicons } from '@expo/vector-icons';
+import { COLORS, FONTS, SIZES, icons } from '../../constants'
 
-const HeaderTabs = ({title}:{title?:string | any}) => {
+const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
 
     const navigation = useNavigation();
 
@@ -14,24 +15,8 @@ const HeaderTabs = ({title}:{title?:string | any}) => {
                     style={styles.containerTocuhable}
                     onPress={() => navigation.goBack()}
                 >
-                    <Image 
-                        source={ icons.back_arrow }
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25,
-                            tintColor: COLORS.colorTitleApp,
-                        }}
-                    />
-                    <Text 
-                        style={{
-                            flex:1,
-                            textAlign:'left',
-                            paddingLeft:10,
-                            textTransform:'uppercase',
-                            ...FONTS.textHeader
-                        }}
-                    >
+                    {backicon ? <Ionicons style={styles.iconBack} name='arrow-back' size={25} color={COLORS.colorTitleApp} /> : <Text style={{width: 25}}></Text>}
+                    <Text style={styles.textTitle}>
                         {title}
                     </Text>
                 </TouchableOpacity>
@@ -39,27 +24,11 @@ const HeaderTabs = ({title}:{title?:string | any}) => {
 
             <View style={styles.containerRight}>
                 <TouchableOpacity style={styles.containerTocuhable}>
-                    <Image 
-                        source={ icons.back_arrow }
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25,
-                            tintColor: COLORS.colorTitleApp,
-                        }}
-                    />
-                    <Image 
-                        source={ icons.back_arrow }
-                        resizeMode="contain"
-                        style={{
-                            width:25,
-                            height:25,
-                            tintColor: COLORS.colorTitleApp,
-                        }}
-                    />
+                    {busqueda ? <Ionicons onPress={(() => console.log('Pantalla de busqueda'))} style={styles.iconSearch} name='search' size={25} color={COLORS.colorTitleApp} /> : null }
+                    {notifications ? <Ionicons onPress={(() => console.log('Pantalla de notificaciones'))} style={styles.iconNotification} name='notifications' size={25} color={COLORS.colorTitleApp} /> : null }
+                    {menuVertical ? <Ionicons onPress={(() => console.log('Pantalla de menú'))} style={styles.iconEllipsis } name='ellipsis-vertical' size={25} color={COLORS.colorTitleApp} /> : null }
                 </TouchableOpacity>
             </View>
-
         </View>
     )
 }
@@ -84,6 +53,36 @@ const styles = StyleSheet.create({
     containerRight: {
         flex:1, 
         alignItems:'flex-end',
+    },
+    textTitle: {
+        flex:1,
+        textAlign:'left',
+        paddingLeft: 2,
+        textTransform:'uppercase',
+        textShadowOffset: {width: 0.75, height: 0.25}, 
+        textShadowRadius: 0.50,
+        ...FONTS.textHeader
+    },
+    iconBack: {
+        width: 25, 
+        color: COLORS.colorTitleApp,
+    },
+    iconSearch: {
+        width: 50, 
+        paddingLeft: 16.5,
+        marginRight: 0.25,
+        color: COLORS.colorIcon,
+    },
+    iconNotification: {
+        width: 50, 
+        paddingLeft: 16.5,
+        marginRight: 0.25,
+        color: COLORS.colorIcon,
+    },
+    iconEllipsis: {
+        width: 30, 
+        paddingLeft: 4,
+        color: COLORS.colorIcon,
     },
 })
 
