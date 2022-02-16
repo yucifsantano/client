@@ -33,6 +33,7 @@ export const SIZES = {
     h3: 16,
     h4: 14,
     text8: 8,
+    text9: 9,
     text10: 10,
     text12: 12,
     text14: 14,
@@ -100,8 +101,11 @@ export const FONTS = {
         fontFamily: "Staatliches",
         fontSize: SIZES.text20,
         color: COLORS.colorTitleApp,
-        textAlign:'center',
-        
+    },
+    textCopyright: {
+        fontFamily: "PoiretOne", 
+        fontSize: SIZES.text10,
+        color: COLORS.colorText,
     }
 };
 

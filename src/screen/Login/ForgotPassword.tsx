@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   instructions: {
     paddingTop:75,
     paddingBottom:45,
+    textAlign:'center',
     ...FONTS.textInstructions,
   },
   titulo: {

@@ -3,11 +3,12 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SIZES, FONTS } from '../../constants'
 
-export default function ButtonGradient({title}:{title:string}) {
+export default function ButtonGradient({title, press}:{title:string, press?:any}) {
+
     return (
         <TouchableOpacity 
             style={styles.container}
-            onPress={() => console.log("Ir a pantalla inicial")}
+            onPress={press}
         >
             <LinearGradient 
                 colors={[COLORS.colorDegradadoBeginning, COLORS.colorDegradadoFinal]}

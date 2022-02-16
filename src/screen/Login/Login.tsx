@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useLogging } from '../../hooks/useLogging';
 import { IStackScreenProps } from '../../library/StackScreenProps';
 
@@ -43,7 +43,10 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = props => {
           ¿Olvidaste tu contraseña?
         </Text>
 
-        <ButtonGradient title='INGRESAR' />
+        <ButtonGradient 
+          title='INGRESAR' 
+          press={() => navigation.navigate('MainTabs')}
+        />
 
         <Text 
           style={styles.forgotPassword}

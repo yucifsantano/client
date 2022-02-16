@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     paddingBottom:45,
     paddingLeft: 22,
     paddingRight: 22,
+    textAlign:'center',
     ...FONTS.textInstructions,
   },
   titulo: {
