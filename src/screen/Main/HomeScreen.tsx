@@ -19,9 +19,9 @@ export default function HomeScreen() {
             />
 
             <View style={styles.body}>
-                <Text style={{fontFamily: 'Shalimar', fontSize: 75}}>Cuerpo de inicio</Text>
-                <Text style={{fontFamily: 'Staatliches', fontSize: 55}}>Cuerpo de inicio</Text>
-                <Text style={{fontFamily: 'PoiretOne', fontSize: 45}}>Cuerpo de inicio</Text>
+                <Text style={{fontFamily: 'Shalimar', fontSize: 75}}>Shalimar</Text>
+                <Text style={{fontFamily: 'Staatliches', fontSize: 55}}>Staatliches</Text>
+                <Text style={{fontFamily: 'PoiretOne', fontSize: 45}}>PoiretOne</Text>
             </View>
 
             <CopyrightLabel />
