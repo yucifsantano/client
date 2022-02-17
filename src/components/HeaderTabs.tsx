@@ -10,20 +10,19 @@ const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       title: 'First Item',
-      subtitle: 'ea velit perferendis earum ut voluptatem voluptate itaque iusto totam pariatur in nemo voluptatem voluptatem autem magni tempora minima in est distinctio qui assumenda accusamus dignissimos officia nesciunt nobis',
+      url: 'ea velit perferendis earum ut voluptatem voluptate itaque iusto totam pariatur in nemo voluptatem voluptatem autem magni tempora minima in est distinctio qui assumenda accusamus dignissimos officia nesciunt nobis',
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       title: 'Second Item',
-      subtitle: 'Subtitulo de second item',
+      url: 'Subtitulo de second item',
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
       title: 'Third Item',
-      subtitle: 'Subtitulo de third item',
+      url: 'Subtitulo de third item',
     },
-
-]; 
+  ]; 
 
 const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
@@ -39,13 +38,15 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
         }
     }, [])
 
+
+    const [masterData, setmasterData] = useState([]);
+
     const fetchPost = () => {
-        const apiURL = 'https://jsonplaceholder.typicode.com/posts';
+        const apiURL = 'https://jsonplaceholder.typicode.com/photos';
         fetch(apiURL)
         .then((response) => response.json())
         .then((responseJson) => {
-
-            console.log(responseJson);
+            setmasterData(responseJson);
         }).catch((error) => {
             console.error(error);
         })
@@ -54,7 +55,7 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
     const renderItem = ({item}:{item:any}) => (
         <TagTitSubt 
             title={item.title}
-            subtitle={item.subtitle}
+            subtitle={item.url}
         />
     );    
 
@@ -79,7 +80,7 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
                         />
                         <FlatList 
                             style={styles.listItemContainer}
-                            data={DATA}
+                            data={masterData}
                             renderItem={renderItem}
                             keyExtractor={item => item.id}
                         />
