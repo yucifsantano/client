@@ -10,7 +10,7 @@ const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       title: 'First Item',
-      subtitle: 'Subtitulo de first item',
+      subtitle: 'ea velit perferendis earum ut voluptatem voluptate itaque iusto totam pariatur in nemo voluptatem voluptatem autem magni tempora minima in est distinctio qui assumenda accusamus dignissimos officia nesciunt nobis',
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',

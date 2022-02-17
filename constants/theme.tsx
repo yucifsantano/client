@@ -40,6 +40,7 @@ export const SIZES = {
     text9: 9,
     text10: 10,
     text12: 12,
+    text13: 13,
     text14: 14,
     text16: 16,
     text17: 17,

@@ -14,7 +14,7 @@ const InputLabel = (
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{title}</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
     )
 }
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         padding: 3,
         paddingLeft: 10,
-        height:50,
+        height: 'auto',
         borderTopWidth: 0.5,
         borderBottomWidth: 0.5,
         borderRightWidth: 0.5,
@@ -38,13 +38,14 @@ const styles = StyleSheet.create({
     title: {
       textAlign: 'left',
       fontFamily: "Staatliches", 
-      fontSize: SIZES.text17,
+      fontSize: SIZES.text19,
       color: COLORS.colorTitleApp
     },
     subtitle: {
         textAlign: 'left',
         fontFamily: "Staatliches", 
-        fontSize: SIZES.text12,
-        color: COLORS.colorSubTitle
+        fontSize: SIZES.text14,
+        color: COLORS.colorLabelText,
+        paddingLeft:7,
       },
   });
