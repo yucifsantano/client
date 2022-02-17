@@ -6,22 +6,41 @@ import { COLORS, FONTS, SIZES, icons } from '../../constants'
 
 import TagTitSubt from '../components/TagTitSubt';
 
-const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
+let primeraVez:boolean = false;
+
+const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
     const [modalSearch, setModalSearch] = useState(false);
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
-   
-    useEffect(() => {
-        fetchPost();
-        return () => {}
-    }, [])
+
+    if (!primeraVez) {
+        console.log('*** page: ' + page);
+        primeraVez = true;
+    }
+    
+    console.log(primeraVez);
+    
+    if (page === 'home') {
+        useEffect(() => {
+            console.log('busqueda');
+            fetchPost();
+            return () => {}
+        }, []);
+    }
+
+
+    const renderItem = ({item}:{item:any}) => (
+        <TagTitSubt 
+            title={item.name}
+            subtitle={item.email.toUpperCase()}
+        />
+    );
 
 
     const [filterdData, setfiltercData] = useState([]);
     const [masterData, setmasterData] = useState([]);
     const [search, setsearch] = useState('');
-
     const fetchPost = () => {
         const apiURL = 'https://jsonplaceholder.typicode.com/users';
         fetch(apiURL)
@@ -32,14 +51,6 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
             console.error(error);
         })
     }
-
-    const renderItem = ({item}:{item:any}) => (
-        <TagTitSubt 
-            title={item.name}
-            subtitle={item.email.toUpperCase()}
-        />
-    );
-
     const searchFilter = (text:string) => {
         if (text) {
             const newData = masterData.filter((item:any) => {

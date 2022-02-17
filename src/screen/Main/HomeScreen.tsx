@@ -11,6 +11,7 @@ export default function HomeScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <HeaderTabs 
+                page='home'
                 title={'Inicio'}
                 backicon={true}
                 busqueda={true}

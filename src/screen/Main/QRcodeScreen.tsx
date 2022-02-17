@@ -11,6 +11,7 @@ export default function QRcodeScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <HeaderTabs 
+                page='qrcode'
                 title={'QR code'}
                 backicon={true}
                 busqueda={true}

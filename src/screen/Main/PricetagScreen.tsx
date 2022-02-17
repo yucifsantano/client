@@ -11,6 +11,7 @@ export default function PricetagScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <HeaderTabs 
+                page='preicetag'
                 title={'Cupones'}
                 backicon={true}
                 busqueda={false}

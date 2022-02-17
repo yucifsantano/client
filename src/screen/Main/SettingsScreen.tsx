@@ -11,6 +11,7 @@ export default function SettingScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <HeaderTabs 
+                page='settings'
                 title={'Ajustes'}
                 backicon={true}
                 busqueda={false}

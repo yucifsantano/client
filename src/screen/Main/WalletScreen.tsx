@@ -11,6 +11,7 @@ export default function WalletScreen() {
         <View style={styles.container}>
             <StatusBar style="auto" />
             <HeaderTabs 
+                page='wallet'
                 title={'Cartera'}
                 backicon={true}
                 busqueda={true}
