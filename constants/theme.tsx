@@ -21,6 +21,8 @@ export const COLORS = {
     colorDegradadoIntermediate: '#ef8f00',
     colorDegradadoFinal: '#d88500',
 
+    colorBackgroundModal: '#eaeaea',
+
 };
 export const SIZES = {
     //global sizes

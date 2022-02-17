@@ -16,16 +16,22 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
         <View style={styles.container}>
 
             <Modal visible={modalSearch} animationType='slide' transparent={true} >
+
                 <View style={styles.modalContainer}>
-                    <View style={{alignItems:'flex-end'}}>
+                    <View style={styles.modalHeader}>
                         <Ionicons 
-                            name='close'
+                            name='close-circle'
                             size={24}
+                            color= {COLORS.colorInputText}
                             onPress={() => setModalSearch(false)}
                         />
                     </View>
-                    <Text>Pantalla modal de busqueda! :)</Text>
+                    <View style={styles.modalBody}>
+                        <Text>Contenido</Text>
+                    </View>
+
                 </View>
+
             </Modal>
 
             <Modal visible={modalNotification} animationType='slide' transparent={true} >
@@ -78,14 +84,19 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
 }
 
 const styles = StyleSheet.create({
+
+
+
+
+
     modalContainer: {
         width: '90%',
         height: '85%',
         marginLeft: 20,
         marginTop: 55,
-        borderWidth: 0.75,
+        borderWidth: 2.50,
         borderRadius: 8,
-        padding: 10,
+        padding: 0,
         borderColor: COLORS.colorSubTitle,
         backgroundColor: 'white',
         shadowColor: '#000',
@@ -96,6 +107,19 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.75,
         shadowRadius: 4,
         elevation: 15,        
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingRight: 8,
+        backgroundColor: COLORS.colorSubTitle, 
+        height:40
+    },
+    modalBody: {
+        flex:1,
+        padding: 10,
+        backgroundColor: COLORS.colorBackgroundModal,
     },
     modalContainerMenu: {
         width: '75%',
