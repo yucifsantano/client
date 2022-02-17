@@ -6,24 +6,6 @@ import { COLORS, FONTS, SIZES, icons } from '../../constants'
 
 import TagTitSubt from '../components/TagTitSubt';
 
-const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-      url: 'ea velit perferendis earum ut voluptatem voluptate itaque iusto totam pariatur in nemo voluptatem voluptatem autem magni tempora minima in est distinctio qui assumenda accusamus dignissimos officia nesciunt nobis',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-      url: 'Subtitulo de second item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-      url: 'Subtitulo de third item',
-    },
-  ]; 
-
 const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
     const [modalSearch, setModalSearch] = useState(false);
@@ -39,10 +21,12 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
     }, [])
 
 
+    const [filterdData, setfiltercData] = useState([]);
     const [masterData, setmasterData] = useState([]);
+    const [search, setsearch] = useState('');
 
     const fetchPost = () => {
-        const apiURL = 'https://jsonplaceholder.typicode.com/photos';
+        const apiURL = 'https://jsonplaceholder.typicode.com/users';
         fetch(apiURL)
         .then((response) => response.json())
         .then((responseJson) => {
@@ -54,10 +38,25 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
 
     const renderItem = ({item}:{item:any}) => (
         <TagTitSubt 
-            title={item.title}
-            subtitle={item.url}
+            title={item.name}
+            subtitle={item.email.toUpperCase()}
         />
-    );    
+    );
+
+    const searchFilter = (text:string) => {
+        if (text) {
+            const newData = masterData.filter((item:any) => {
+                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+                const textData = text.toUpperCase();
+                return itemData.indexOf(textData) > -1;
+            });
+            setfiltercData(newData);
+            setsearch(text);
+        } else {
+            setfiltercData(masterData);
+            setsearch(text);
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -76,11 +75,16 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
                     <View style={styles.modalBody}>
                         <TextInput
                             style={styles.input}
+                            value={search}
                             placeholder='Qué quieres buscar...'
+                            underlineColorAndroid='transparent'
+                            onChangeText={(text) => searchFilter(text)}
+                            autoCapitalize='characters'
+                            autoFocus={true}
                         />
                         <FlatList 
                             style={styles.listItemContainer}
-                            data={masterData}
+                            data={filterdData}
                             renderItem={renderItem}
                             keyExtractor={item => item.id}
                         />
@@ -145,12 +149,10 @@ const styles = StyleSheet.create({
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
-      },
-      title: {
+    },
+    title: {
         fontSize: 32,
-      },
-    
-
+    },
     input: {
         height: 40,
         margin: 3,
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         padding: 10,
         fontFamily: 'PoiretOne',
+        
     },
     listItemContainer: {
         margin: 3,
