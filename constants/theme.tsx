@@ -22,6 +22,7 @@ export const COLORS = {
     colorDegradadoFinal: '#d88500',
 
     colorBackgroundModal: '#eaeaea',
+    colorBackgroundTag1: '#e0e0e0',
 
 };
 export const SIZES = {
@@ -41,6 +42,9 @@ export const SIZES = {
     text12: 12,
     text14: 14,
     text16: 16,
+    text17: 17,
+    text18: 18,
+    text19: 19,
     text20: 20,
     text22: 22,
     text30: 30,
@@ -71,7 +75,6 @@ export const FONTS = {
         fontSize: 80,
         color: COLORS.colorTitleApp, 
         textShadowColor: COLORS.colorShadow, 
-
     },
     subtitle: {
         fontFamily: "Shalimar", 

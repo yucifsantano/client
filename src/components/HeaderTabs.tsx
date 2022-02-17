@@ -1,16 +1,62 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Modal, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Modal, FlatList, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS, SIZES, icons } from '../../constants'
 
+import TagTitSubt from '../components/TagTitSubt';
+
+const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+      subtitle: 'Subtitulo de first item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+      subtitle: 'Subtitulo de second item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+      subtitle: 'Subtitulo de third item',
+    },
+
+]; 
+
 const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
+    const navigation = useNavigation();
     const [modalSearch, setModalSearch] = useState(false);
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
+   
 
-    const navigation = useNavigation();
-    
+    useEffect(() => {
+        fetchPost();
+        return () => {
+
+        }
+    }, [])
+
+    const fetchPost = () => {
+        const apiURL = 'https://jsonplaceholder.typicode.com/posts';
+        fetch(apiURL)
+        .then((response) => response.json())
+        .then((responseJson) => {
+
+            console.log(responseJson);
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+    const renderItem = ({item}:{item:any}) => (
+        <TagTitSubt 
+            title={item.title}
+            subtitle={item.subtitle}
+        />
+    );    
 
     return (
         <View style={styles.container}>
@@ -27,7 +73,16 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
                         />
                     </View>
                     <View style={styles.modalBody}>
-                        <Text>Contenido</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Qué quieres buscar...'
+                        />
+                        <FlatList 
+                            style={styles.listItemContainer}
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id}
+                        />
                     </View>
 
                 </View>
@@ -84,11 +139,30 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
 }
 
 const styles = StyleSheet.create({
+    item: {
+        backgroundColor: '#f9c2ff',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+      },
+      title: {
+        fontSize: 32,
+      },
+    
 
-
-
-
-
+    input: {
+        height: 40,
+        margin: 3,
+        borderWidth: 0.75,
+        borderColor: COLORS.colorSubTitle,
+        borderRadius: 6,
+        padding: 10,
+        fontFamily: 'PoiretOne',
+    },
+    listItemContainer: {
+        margin: 3,
+        padding: 2,
+    },
     modalContainer: {
         width: '90%',
         height: '85%',
