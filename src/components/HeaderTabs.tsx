@@ -12,12 +12,9 @@ const HeaderTabs = ({title, backicon, busqueda, notifications, menuVertical}:{ti
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
    
-
     useEffect(() => {
         fetchPost();
-        return () => {
-
-        }
+        return () => {}
     }, [])
 
 
