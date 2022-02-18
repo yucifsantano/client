@@ -13,7 +13,7 @@ const SearchModal = (props:any)  => {
     }
     
     const renderItem = ({item}:{item:any}) => (
-        <TouchableOpacity style={styles.containerTag} onPress={() => console.log(item!)}>
+        <TouchableOpacity style={styles.containerTag} onPress={() => closeModal(false, item)}>
             <Text style={styles.title}>{item.name}</Text>
             <Text style={styles.subtitle}>{item.email.toUpperCase()}</Text>
         </TouchableOpacity>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Modal, FlatList, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
@@ -9,53 +9,17 @@ import {SearchModal} from '../components/SearchModal';
 const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
     const [isModalVisible, setisModalVisible] = useState(false);
-    const [chooseData, setchooseData] = useState();
+    const [chooseData, setchooseData] = useState('');
     const changeModalVisible = (bool:boolean) => {
         setisModalVisible(bool)
     }
     const setData = (data:any) => {
-        setchooseData(data);
-    }
-
-
-    const [modalSearch, setModalSearch] = useState(false);
-    const [modalNotification, setModalNotification] = useState(false);
-    const [modalMenuRight, setMenuRight] = useState(false);
-
-    const [search, setsearch] = useState('');
-    const [filterdData, setfiltercData] = useState([]);
-    const [masterData, setmasterData] = useState([]);
-    const fetchPost = () => {
-        const apiURL = 'https://jsonplaceholder.typicode.com/users';
-        fetch(apiURL)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            setmasterData(responseJson);
-            setfiltercData(responseJson);
-        }).catch((error) => {
-            console.error(error);
-        })
-    }
-    const searchFilter = (text:string) => {
-        if (text) {
-            const newData = masterData.filter((item:any) => {
-                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
-                const textData = text.toUpperCase();
-                return itemData.indexOf(textData) > -1;
-            });
-            setfiltercData(newData);
-            setsearch(text);
-        } else {
-            setfiltercData(masterData);
-            setsearch(text);
+        let valSelect = data.name;
+        if (valSelect === undefined) {
+            valSelect = '';
         }
+        setchooseData(valSelect);
     }
-
-    useEffect(() => {
-        fetchPost();
-        return () => {}
-    }, []);
-
 
     return (
         <View style={styles.container}>
@@ -78,7 +42,7 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
                 >
                     {backicon ? <Ionicons style={styles.iconBack} name='arrow-back' size={25} color={COLORS.colorTitleApp} /> : <Text style={{width: 25}}></Text>}
                     <Text style={styles.textTitle}>
-                        {title} {chooseData}
+                        {chooseData == '' ? title : chooseData}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -86,8 +50,8 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
             <View style={styles.containerRight}>
                 <TouchableOpacity style={styles.containerTocuhable}>
                     {busqueda ? <Ionicons onPress={(() => changeModalVisible(true))} style={styles.iconSearch} name='search' size={25} color={COLORS.colorTitleApp} /> : null }
-                    {notifications ? <Ionicons onPress={(() => setModalNotification(true))} style={styles.iconNotification} name='notifications' size={25} color={COLORS.colorTitleApp} /> : null }
-                    {menuVertical ? <Ionicons onPress={(() => setMenuRight(true))} style={styles.iconEllipsis } name='ellipsis-vertical' size={25} color={COLORS.colorTitleApp} /> : null }
+                    {notifications ? <Ionicons onPress={(() => console.log('Modal de notificaciones'))} style={styles.iconNotification} name='notifications' size={25} color={COLORS.colorTitleApp} /> : null }
+                    {menuVertical ? <Ionicons onPress={(() => console.log('Modal de menú vertical'))} style={styles.iconEllipsis } name='ellipsis-vertical' size={25} color={COLORS.colorTitleApp} /> : null }
                 </TouchableOpacity>
             </View>
         </View>
