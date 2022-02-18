@@ -67,7 +67,6 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
 
     return (
         <View style={styles.container}>
-
             <Modal
                 transparent={true}
                 animationType='slide'
@@ -87,7 +86,7 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
                 >
                     {backicon ? <Ionicons style={styles.iconBack} name='arrow-back' size={25} color={COLORS.colorTitleApp} /> : <Text style={{width: 25}}></Text>}
                     <Text style={styles.textTitle}>
-                        {title}
+                        {title} {chooseData}
                     </Text>
                 </TouchableOpacity>
             </View>

@@ -1,7 +1,8 @@
-import React from "react";
-import { StyleSheet, TextInput, View, TouchableOpacity, Dimensions, FlatList } from 'react-native'
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Dimensions, FlatList } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS, FONTS } from '../../constants'
+import { COLORS, SIZES } from '../../constants'
+import TagTitSubt from '../components/TagTitSubt';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -11,6 +12,46 @@ const SearchModal = (props:any)  => {
         props.changeModalVisible(bool);
         props.setData(data);
     }
+    
+    const renderItem = ({item}:{item:any}) => (
+        <TouchableOpacity style={styles.containerTag} onPress={() => console.log(item!)}>
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.email.toUpperCase()}</Text>
+        </TouchableOpacity>
+    );
+    const [masterData, setmasterData] = useState([]);
+    const [filterdData, setfiltercData] = useState([]);
+    const [search, setsearch] = useState('');
+    const fetchPost = () => {
+        const apiURL = 'https://jsonplaceholder.typicode.com/users';
+        fetch(apiURL)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setmasterData(responseJson);
+            setfiltercData(responseJson);
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+    const searchFilter = (text:string) => {
+        if (text) {
+            const newData = masterData.filter((item:any) => {
+                const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+                const textData = text.toUpperCase();
+                return itemData.indexOf(textData) > -1;
+            });
+            setfiltercData(newData);
+            setsearch(text);
+        } else {
+            setfiltercData(masterData);
+            setsearch(text);
+        }
+    }
+
+    useEffect(() => {
+        fetchPost();
+        return () => {}
+    }, []);
 
     return (
         <TouchableOpacity
@@ -23,20 +64,27 @@ const SearchModal = (props:any)  => {
                         name='close-circle'
                         size={24}
                         color= {COLORS.colorInputText}
-                        onPress={() => closeModal(false, 'closeModal')}
+                        onPress={() => closeModal(false, '')}
                     />
                 </View>
                 <View style={styles.modalBody}>
                     <TextInput
                         style={styles.input}
+                        value={search}
                         placeholder='Qué quieres buscar...'
                         underlineColorAndroid='transparent'
+                        onChangeText={(text) => searchFilter(text)}
                         autoCapitalize='characters'
                         autoFocus={true}
                     />
+                    <FlatList 
+                        style={styles.listItemContainer}
+                        data={filterdData}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                    />
+
                 </View>
-
-
             </View>
         </TouchableOpacity>
     )
@@ -77,6 +125,10 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: COLORS.colorBackgroundModal,
     },
+    listItemContainer: {
+        margin: 3,
+        padding: 2,
+    },
     input: {
         height: 40,
         margin: 3,
@@ -87,6 +139,32 @@ const styles = StyleSheet.create({
         fontFamily: 'PoiretOne',
         
     },
-})
+    title: {
+        textAlign: 'left',
+        fontFamily: "Staatliches", 
+        fontSize: SIZES.text19,
+        color: COLORS.colorTitleApp
+      },
+      subtitle: {
+        textAlign: 'left',
+        fontFamily: "Staatliches", 
+        fontSize: SIZES.text14,
+        color: COLORS.colorLabelText,
+        paddingLeft:7,
+    },
+    containerTag: {
+        width: '100%',
+        marginBottom: 5,
+        padding: 3,
+        paddingLeft: 10,
+        height: 'auto',
+        borderTopWidth: 0.5,
+        borderBottomWidth: 0.5,
+        borderRightWidth: 0.5,
+        borderLeftWidth: 5,
+        borderColor: COLORS.colorTitleApp,
+        backgroundColor: COLORS.colorBackgroundTag1,
+    },
+  })
 
 export {SearchModal}

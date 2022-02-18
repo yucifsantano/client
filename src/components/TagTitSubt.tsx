@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { COLORS, SIZES, FONTS } from '../../constants'
 
 const InputLabel = (
@@ -12,10 +13,10 @@ const InputLabel = (
     }) =>  {
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => console.log('item!')}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subtitle}>{subtitle}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 
