@@ -10,8 +10,12 @@ import {SearchModal} from '../components/SearchModal';
 const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
     const [isModalVisible, setisModalVisible] = useState(false);
+    const [chooseData, setchooseData] = useState();
     const changeModalVisible = (bool:boolean) => {
         setisModalVisible(bool)
+    }
+    const setData = (data:any) => {
+        setchooseData(data);
     }
 
 
@@ -70,7 +74,10 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
                 visible={isModalVisible}
                 onRequestClose={() => changeModalVisible(false)}
             >
-                <SearchModal />
+                <SearchModal 
+                    changeModalVisible={changeModalVisible}
+                    setData={setData}
+                />
             </Modal>            
 
             <View style={styles.containerLeft}>

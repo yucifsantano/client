@@ -5,7 +5,13 @@ import { COLORS, FONTS } from '../../constants'
 
 const WIDTH = Dimensions.get('window').width;
 
-const SearchModal = ()  => {
+const SearchModal = (props:any)  => {
+
+    const closeModal = (bool:boolean, data:any) => {
+        props.changeModalVisible(bool);
+        props.setData(data);
+    }
+
     return (
         <TouchableOpacity
             disabled={true}
@@ -17,6 +23,7 @@ const SearchModal = ()  => {
                         name='close-circle'
                         size={24}
                         color= {COLORS.colorInputText}
+                        onPress={() => closeModal(false, 'closeModal')}
                     />
                 </View>
                 <View style={styles.modalBody}>
