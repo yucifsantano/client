@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS } from '../../constants'
 
-import TagTitSubt from '../components/TagTitSubt';
 import {SearchModal} from '../components/SearchModal';
 
 const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
@@ -22,13 +21,6 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
     const [modalSearch, setModalSearch] = useState(false);
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
-
-    const renderItem = ({item}:{item:any}) => (
-        <TagTitSubt 
-            title={item.name}
-            subtitle={item.email.toUpperCase()}
-        />
-    );
 
     const [search, setsearch] = useState('');
     const [filterdData, setfiltercData] = useState([]);
