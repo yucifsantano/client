@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Modal, FlatList, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS, FONTS, SIZES, icons } from '../../constants'
+import { COLORS, FONTS } from '../../constants'
 
 import TagTitSubt from '../components/TagTitSubt';
 
@@ -12,19 +12,6 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
 
-    console.log('*** page: ' + page);
-    useEffect(() => {
-        switch (page) {
-            case 'home':
-                console.log('registros de home!');
-                fetchPostHome();
-                break;
-        }
-        return () => {
-            console.log('*** PRIMERA OCA! ***')
-        }
-    }, []);
-
     const renderItem = ({item}:{item:any}) => (
         <TagTitSubt 
             title={item.name}
@@ -33,11 +20,9 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
     );
 
     const [search, setsearch] = useState('');
-
-    // SECCIÓN BUSQUEDA INICIO (home)
     const [filterdData, setfiltercData] = useState([]);
     const [masterData, setmasterData] = useState([]);
-    const fetchPostHome = () => {
+    const fetchPost = () => {
         const apiURL = 'https://jsonplaceholder.typicode.com/users';
         fetch(apiURL)
         .then((response) => response.json())
@@ -63,11 +48,16 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
         }
     }
 
+    useEffect(() => {
+        fetchPost();
+        return () => {}
+    }, []);
+
+
     return (
         <View style={styles.container}>
 
             <Modal visible={modalSearch} animationType='slide' transparent={true} >
-
                 <View style={styles.modalContainer}>
                     <View style={styles.modalHeader}>
                         <Ionicons 
