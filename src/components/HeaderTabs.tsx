@@ -6,29 +6,24 @@ import { COLORS, FONTS, SIZES, icons } from '../../constants'
 
 import TagTitSubt from '../components/TagTitSubt';
 
-let primeraVez:boolean = false;
-
 const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
     const [modalSearch, setModalSearch] = useState(false);
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
 
-    if (!primeraVez) {
-        console.log('*** page: ' + page);
-        primeraVez = true;
-    }
-    
-    console.log(primeraVez);
-    
-    if (page === 'home') {
-        useEffect(() => {
-            console.log('busqueda');
-            fetchPost();
-            return () => {}
-        }, []);
-    }
-
+    console.log('*** page: ' + page);
+    useEffect(() => {
+        switch (page) {
+            case 'home':
+                console.log('registros de home!');
+                fetchPostHome();
+                break;
+        }
+        return () => {
+            console.log('*** PRIMERA OCA! ***')
+        }
+    }, []);
 
     const renderItem = ({item}:{item:any}) => (
         <TagTitSubt 
@@ -37,16 +32,18 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
         />
     );
 
+    const [search, setsearch] = useState('');
 
+    // SECCIÓN BUSQUEDA INICIO (home)
     const [filterdData, setfiltercData] = useState([]);
     const [masterData, setmasterData] = useState([]);
-    const [search, setsearch] = useState('');
-    const fetchPost = () => {
+    const fetchPostHome = () => {
         const apiURL = 'https://jsonplaceholder.typicode.com/users';
         fetch(apiURL)
         .then((response) => response.json())
         .then((responseJson) => {
             setmasterData(responseJson);
+            setfiltercData(responseJson);
         }).catch((error) => {
             console.error(error);
         })
