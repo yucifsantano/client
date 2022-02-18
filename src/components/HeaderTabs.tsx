@@ -5,9 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS } from '../../constants'
 
 import TagTitSubt from '../components/TagTitSubt';
+import {SearchModal} from '../components/SearchModal';
 
 const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
     const navigation = useNavigation();
+    const [isModalVisible, setisModalVisible] = useState(false);
+    const changeModalVisible = (bool:boolean) => {
+        setisModalVisible(bool)
+    }
+
+
     const [modalSearch, setModalSearch] = useState(false);
     const [modalNotification, setModalNotification] = useState(false);
     const [modalMenuRight, setMenuRight] = useState(false);
@@ -57,63 +64,14 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
     return (
         <View style={styles.container}>
 
-            <Modal visible={modalSearch} animationType='slide' transparent={true} >
-                <View style={styles.modalContainer}>
-                    <View style={styles.modalHeader}>
-                        <Ionicons 
-                            name='close-circle'
-                            size={24}
-                            color= {COLORS.colorInputText}
-                            onPress={() => setModalSearch(false)}
-                        />
-                    </View>
-                    <View style={styles.modalBody}>
-                        <TextInput
-                            style={styles.input}
-                            value={search}
-                            placeholder='Qué quieres buscar...'
-                            underlineColorAndroid='transparent'
-                            onChangeText={(text) => searchFilter(text)}
-                            autoCapitalize='characters'
-                            autoFocus={true}
-                        />
-                        <FlatList 
-                            style={styles.listItemContainer}
-                            data={filterdData}
-                            renderItem={renderItem}
-                            keyExtractor={item => item.id}
-                        />
-                    </View>
-
-                </View>
-
-            </Modal>
-
-            <Modal visible={modalNotification} animationType='slide' transparent={true} >
-                <View style={styles.modalContainer}>
-                    <View style={{alignItems:'flex-end'}}>
-                        <Ionicons 
-                            name='close'
-                            size={24}
-                            onPress={() => setModalNotification(false)}
-                        />
-                    </View>
-                    <Text>Pantalla modal de notificaciones! :)</Text>
-                </View>
-            </Modal>
-
-            <Modal visible={modalMenuRight} animationType='fade' transparent={true} >
-                <View style={styles.modalContainerMenu}>
-                    <View style={{alignItems:'flex-end'}}>
-                        <Ionicons 
-                            name='close'
-                            size={24}
-                            onPress={() => setMenuRight(false)}
-                        />
-                    </View>
-                    <Text>Menu!</Text>
-                </View>
-            </Modal>
+            <Modal
+                transparent={true}
+                animationType='slide'
+                visible={isModalVisible}
+                onRequestClose={() => changeModalVisible(false)}
+            >
+                <SearchModal />
+            </Modal>            
 
             <View style={styles.containerLeft}>
                 <TouchableOpacity
@@ -129,7 +87,7 @@ const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertica
 
             <View style={styles.containerRight}>
                 <TouchableOpacity style={styles.containerTocuhable}>
-                    {busqueda ? <Ionicons onPress={(() => setModalSearch(true))} style={styles.iconSearch} name='search' size={25} color={COLORS.colorTitleApp} /> : null }
+                    {busqueda ? <Ionicons onPress={(() => changeModalVisible(true))} style={styles.iconSearch} name='search' size={25} color={COLORS.colorTitleApp} /> : null }
                     {notifications ? <Ionicons onPress={(() => setModalNotification(true))} style={styles.iconNotification} name='notifications' size={25} color={COLORS.colorTitleApp} /> : null }
                     {menuVertical ? <Ionicons onPress={(() => setMenuRight(true))} style={styles.iconEllipsis } name='ellipsis-vertical' size={25} color={COLORS.colorTitleApp} /> : null }
                 </TouchableOpacity>
