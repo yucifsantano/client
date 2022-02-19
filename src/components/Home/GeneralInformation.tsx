@@ -37,6 +37,8 @@ const GeneralInformation = (props:any) => {
 
             <View style={{alignItems:'center'}}>
                 <Text>{geolocation}</Text>
+                <View style={styles.mapcontainer}>
+                </View>
             </View>
         </>
     )
@@ -62,7 +64,18 @@ const styles = StyleSheet.create({
         textAlign:'right', 
         paddingRight: 10,
         color: COLORS.colorLabelText,
-    }
+    },
+    mapcontainer: {
+        width: SIZES.width - 50,
+        height: 350,
+        padding: 10,
+        borderWidth: 0.75,
+        borderRadius: SIZES.radius,
+        borderColor: COLORS.colorSubTitle,
+        backgroundColor: COLORS.colorBackgroundModal,
+        marginBottom: 25,
+        ...FONTS.shadowObj
+    },
 })
 
 export default GeneralInformation;
