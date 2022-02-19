@@ -24,7 +24,7 @@ const HeaderTabs = (props:any) => {
             valSelect = '';
         }
         setchooseData(valSelect);
-        handleSearch(data);
+        page == 'home' ? handleSearch(data) : null;
     }
 
     return (
