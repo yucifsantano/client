@@ -58,6 +58,17 @@ export const SIZES = {
 };
 
 export const FONTS = {
+    shadowObj: {
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+        shadowOpacity: 0.75,
+        shadowRadius: 4,
+        elevation: 15,        
+    },
+
     label30: { 
         fontFamily: "Shalimar", 
         fontSize: SIZES.text30, 

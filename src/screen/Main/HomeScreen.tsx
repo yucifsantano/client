@@ -6,6 +6,9 @@ import { COLORS } from '../../../constants/theme';
 import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
 
+import TipoLetras from '../../components/Home/TipoLetras';
+import GeneralInformation from '../../components/Home/GeneralInformation';
+
 export default function HomeScreen() {
     const [searchData, setsearchData] = useState('Shalimar');
 
@@ -23,7 +26,7 @@ export default function HomeScreen() {
         if (!data.name) {
             setsearchData('Shalimar');
         } else {
-            setsearchData(data.name);
+            setsearchData(data);
         }
     }
 
@@ -36,9 +39,7 @@ export default function HomeScreen() {
             />
 
             <View style={styles.body}>
-                <Text style={{fontFamily: 'Shalimar', fontSize: 75}}>{searchData}</Text>
-                <Text style={{fontFamily: 'Staatliches', fontSize: 55}}>Staatliches</Text>
-                <Text style={{fontFamily: 'PoiretOne', fontSize: 45}}>PoiretOne</Text>
+                {searchData == 'Shalimar' ? <TipoLetras /> : <GeneralInformation datos={searchData} /> }
             </View>
 
             <CopyrightLabel />
@@ -55,9 +56,6 @@ const styles = StyleSheet.create({
     },
     body: {
       flex:10,
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '99%',
     },
   });
   
