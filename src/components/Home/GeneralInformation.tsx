@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTS, SIZES } from '../../../constants'
 
@@ -7,18 +7,25 @@ import MapView, { Marker } from 'react-native-maps';
 const GeneralInformation = (props:any) => {
     const { datos } = props;
     const { id, name, username, phone, email, website, address } = datos;
-    
-
 
     const [geolocation, setgeolocation] = useState('');
-    const [lat, setLatitude] = useState(37.78825);
-    const [lng, setLongitude] = useState(-122.4324);
+    const [lat, setLatitude] = useState(parseFloat(address.geo.lat)); //20.5556124
+    const [lng, setLongitude] = useState(parseFloat(address.geo.lng)); //-100.3610186
 
     const geo = () => {
-        setgeolocation('Lat: ' + address.geo.lat +  ' Lng: ' + address.geo.lng);
         setLatitude(parseFloat(address.geo.lat))
         setLongitude(parseFloat(address.geo.lng))
+        setgeolocation('Lat: ' + lat +  ' Lng: ' + lng);
     }
+
+    useEffect(() => {
+        setLatitude(parseFloat(address.geo.lat))
+        setLongitude(parseFloat(address.geo.lng))
+        console.log(lat);
+        console.log(lng);
+        return () => {}
+    }, []);
+
 
     return (
         <>
