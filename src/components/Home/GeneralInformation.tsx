@@ -8,9 +8,16 @@ const GeneralInformation = (props:any) => {
     const { datos } = props;
     const { id, name, username, phone, email, website, address } = datos;
     
+
+
     const [geolocation, setgeolocation] = useState('');
+    const [lat, setLatitude] = useState(37.78825);
+    const [lng, setLongitude] = useState(-122.4324);
+
     const geo = () => {
         setgeolocation('Lat: ' + address.geo.lat +  ' Lng: ' + address.geo.lng);
+        setLatitude(parseFloat(address.geo.lat))
+        setLongitude(parseFloat(address.geo.lng))
     }
 
     return (
@@ -44,14 +51,14 @@ const GeneralInformation = (props:any) => {
                         style={styles.map}
                         loadingEnabled={true}
                         region={{
-                            latitude: 37.78825,
-                            longitude: -122.4324,
+                            latitude: lat,
+                            longitude: lng,
                             latitudeDelta: 0.015,
                             longitudeDelta: 0.0121
                         }}
                     >
                         <Marker 
-                            coordinate={{ latitude : 37.78825 , longitude : -122.4324 }}
+                            coordinate={{ latitude : lat , longitude : lng }}
                         />
                     </MapView>
                 </View>
@@ -84,9 +91,8 @@ const styles = StyleSheet.create({
     mapcontainer: {
         width: SIZES.width - 50,
         height: 350,
-        padding: 5,
+        padding: 1,
         borderWidth: 0.75,
-        borderRadius: SIZES.radius,
         borderColor: COLORS.colorSubTitle,
         backgroundColor: COLORS.colorBackgroundModal,
         marginBottom: 25,
