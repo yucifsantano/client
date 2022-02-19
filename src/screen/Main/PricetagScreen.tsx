@@ -7,18 +7,20 @@ import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
 
 export default function PricetagScreen() {
+    const dtsHeader = {
+        page: 'preicetag',
+        title:'Cupones',
+        backicon:true,
+        busqueda:false,
+        notifications:true,
+        menuVertical:true
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <HeaderTabs 
-                page='preicetag'
-                title={'Cupones'}
-                backicon={true}
-                busqueda={false}
-                notifications={true}
-                menuVertical={true}
-            />
-
+            <HeaderTabs datos={dtsHeader} />
+            
             <View style={styles.body}>
                 <Text>Cuerpo de cupones</Text>
             </View>

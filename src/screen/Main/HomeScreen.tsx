@@ -7,17 +7,19 @@ import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
 
 export default function HomeScreen() {
+    const dtsHeader = {
+        page: 'home',
+        title:'Inicio',
+        backicon:true,
+        busqueda:true,
+        notifications:true,
+        menuVertical:true
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <HeaderTabs 
-                page='home'
-                title={'Inicio'}
-                backicon={true}
-                busqueda={true}
-                notifications={true}
-                menuVertical={true}
-            />
+            <HeaderTabs datos={dtsHeader} />
 
             <View style={styles.body}>
                 <Text style={{fontFamily: 'Shalimar', fontSize: 75}}>Shalimar</Text>

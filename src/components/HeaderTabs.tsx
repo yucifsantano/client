@@ -6,7 +6,10 @@ import { COLORS, FONTS } from '../../constants'
 
 import {SearchModal} from '../components/SearchModal';
 
-const HeaderTabs = ({page, title, backicon, busqueda, notifications, menuVertical}:{page?: string, title?:string | any, backicon?:boolean, busqueda?:boolean, notifications?:boolean, menuVertical?:boolean }) => {
+const HeaderTabs = (props:any) => {
+    const { datos } = props;
+    const { page, title, backicon, busqueda, notifications, menuVertical } = datos;
+
     const navigation = useNavigation();
     const [isModalVisible, setisModalVisible] = useState(false);
     const [chooseData, setchooseData] = useState('');

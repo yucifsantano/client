@@ -7,18 +7,20 @@ import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
 
 export default function WalletScreen() {
+    const dtsHeader = {
+        page: 'wallet',
+        title:'Cartera',
+        backicon:true,
+        busqueda:true,
+        notifications:false,
+        menuVertical:true
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <HeaderTabs 
-                page='wallet'
-                title={'Cartera'}
-                backicon={true}
-                busqueda={true}
-                notifications={false}
-                menuVertical={true}
-            />
-
+            <HeaderTabs datos={dtsHeader} />
+            
             <View style={styles.body}>
                 <Text>Cuerpo de cartera</Text>
             </View>

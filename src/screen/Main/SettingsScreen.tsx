@@ -7,18 +7,20 @@ import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
 
 export default function SettingScreen() {
+    const dtsHeader = {
+        page: 'settings',
+        title:'Ajustes',
+        backicon:true,
+        busqueda:false,
+        notifications:false,
+        menuVertical:false
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <HeaderTabs 
-                page='settings'
-                title={'Ajustes'}
-                backicon={true}
-                busqueda={false}
-                notifications={false}
-                menuVertical={false}
-            />
-
+            <HeaderTabs datos={dtsHeader} />
+            
             <View style={styles.body}>
                 <Text>Cuerpo de cupones</Text>
             </View>
