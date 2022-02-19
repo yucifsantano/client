@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTS, SIZES } from '../../../constants'
 
+import MapView, { Marker } from 'react-native-maps';
+
 const GeneralInformation = (props:any) => {
     const { datos } = props;
     const { id, name, username, phone, email, website, address } = datos;
@@ -38,6 +40,20 @@ const GeneralInformation = (props:any) => {
             <View style={{alignItems:'center'}}>
                 <Text>{geolocation}</Text>
                 <View style={styles.mapcontainer}>
+                    <MapView 
+                        style={styles.map}
+                        loadingEnabled={true}
+                        region={{
+                            latitude: 37.78825,
+                            longitude: -122.4324,
+                            latitudeDelta: 0.015,
+                            longitudeDelta: 0.0121
+                        }}
+                    >
+                        <Marker 
+                            coordinate={{ latitude : 37.78825 , longitude : -122.4324 }}
+                        />
+                    </MapView>
                 </View>
             </View>
         </>
@@ -68,13 +84,17 @@ const styles = StyleSheet.create({
     mapcontainer: {
         width: SIZES.width - 50,
         height: 350,
-        padding: 10,
+        padding: 5,
         borderWidth: 0.75,
         borderRadius: SIZES.radius,
         borderColor: COLORS.colorSubTitle,
         backgroundColor: COLORS.colorBackgroundModal,
         marginBottom: 25,
         ...FONTS.shadowObj
+    },
+    map: {
+        width: '100%',
+        height: '100%',
     },
 })
 
