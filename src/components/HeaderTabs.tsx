@@ -10,6 +10,8 @@ const HeaderTabs = (props:any) => {
     const { datos } = props;
     const { page, title, backicon, busqueda, notifications, menuVertical } = datos;
 
+    const { handleSearch } = props
+
     const navigation = useNavigation();
     const [isModalVisible, setisModalVisible] = useState(false);
     const [chooseData, setchooseData] = useState('');
@@ -22,6 +24,7 @@ const HeaderTabs = (props:any) => {
             valSelect = '';
         }
         setchooseData(valSelect);
+        handleSearch(data);
     }
 
     return (
