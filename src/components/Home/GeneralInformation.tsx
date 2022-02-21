@@ -13,8 +13,10 @@ const GeneralInformation = (props:any) => {
     const [lng, setLongitude] = useState(parseFloat(address.geo.lng)); //-100.3610186
 
     const geo = () => {
-        setLatitude(parseFloat(address.geo.lat))
-        setLongitude(parseFloat(address.geo.lng))
+        //setLatitude(parseFloat(address.geo.lat))
+        //setLongitude(parseFloat(address.geo.lng))
+        setLatitude(20.5556124)
+        setLongitude(-100.3610186)
         setgeolocation('Lat: ' + lat +  ' Lng: ' + lng);
     }
 
@@ -65,7 +67,12 @@ const GeneralInformation = (props:any) => {
                         }}
                     >
                         <Marker 
-                            coordinate={{ latitude : lat , longitude : lng }}
+                            coordinate={{ 
+                                latitude : lat ,
+                                longitude : lng 
+                            }}
+                            title={name}
+                            description={email}
                         />
                     </MapView>
                 </View>
