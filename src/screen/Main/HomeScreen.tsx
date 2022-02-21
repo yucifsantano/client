@@ -21,6 +21,7 @@ export default function HomeScreen() {
         menuVertical:true,
     }
     const handleSearch = (data:any) => {
+        // REGRESO DEL ENCABEZADO!
         console.log('REGRESO DEL ENCABEZADO!');
         console.log(data);
         if (!data.name) {

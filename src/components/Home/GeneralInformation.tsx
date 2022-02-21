@@ -7,24 +7,39 @@ import MapView, { Marker } from 'react-native-maps';
 const GeneralInformation = (props:any) => {
     const { datos } = props;
     const { id, name, username, phone, email, website, address } = datos;
+    const { bs } = datos.company;
+    const { street, suite, zipcode } = datos.address;
 
     const [geolocation, setgeolocation] = useState('');
     const [lat, setLatitude] = useState(parseFloat(address.geo.lat)); //20.5556124
     const [lng, setLongitude] = useState(parseFloat(address.geo.lng)); //-100.3610186
+/*
+    const [json, setJson] = useState('');
 
+    setJson({...props,  masterField2: {
+        fieldOne: "a",
+        fieldTwo: {
+           fieldTwoOne: "b",
+           fieldTwoTwo: "c"
+           }
+        },
+   })
+
+   console.log(json);
+*/
     const geo = () => {
-        //setLatitude(parseFloat(address.geo.lat))
-        //setLongitude(parseFloat(address.geo.lng))
-        setLatitude(20.5556124)
-        setLongitude(-100.3610186)
+        setLatitude(parseFloat(address.geo.lat))
+        setLongitude(parseFloat(address.geo.lng))
+        //setLatitude(20.5556124)
+        //setLongitude(-100.3610186)
+        console.log('Lat: ' + lat +  ' Lng: ' + lng);
         setgeolocation('Lat: ' + lat +  ' Lng: ' + lng);
     }
 
     useEffect(() => {
         setLatitude(parseFloat(address.geo.lat))
         setLongitude(parseFloat(address.geo.lng))
-        console.log(lat);
-        console.log(lng);
+        geo()
         return () => {}
     }, []);
 
@@ -54,8 +69,8 @@ const GeneralInformation = (props:any) => {
             </TouchableOpacity>
 
             <View style={{alignItems:'center'}}>
-                <Text>{geolocation}</Text>
                 <View style={styles.mapcontainer}>
+                    <Text style={{textAlign:'right', paddingRight:10, fontSize: SIZES.text10, color:COLORS.colorTitleApp}}>{geolocation}</Text>
                     <MapView 
                         style={styles.map}
                         loadingEnabled={true}
@@ -75,6 +90,10 @@ const GeneralInformation = (props:any) => {
                             description={email}
                         />
                     </MapView>
+                    <View>
+                        <Text style={[FONTS.textInstructions, {textAlign:'center'}]}>{bs}</Text>
+                        <Text style={[FONTS.textCopyright, {textAlign:'right', paddingRight:10}]}>{street} {suite} {zipcode}</Text>
+                    </View>
                 </View>
             </View>
         </>
@@ -114,7 +133,7 @@ const styles = StyleSheet.create({
     },
     map: {
         width: '100%',
-        height: '100%',
+        height: '80%',
     },
 })
 

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text } from 'react-native';
-import { COLORS } from '../../../constants/theme';
+import { COLORS, FONTS, SIZES } from '../../../constants/theme';
 
 import HeaderTabs from '../../components/HeaderTabs';
 import CopyrightLabel from '../../components/CopyrightLabel';
+
+import { TagCoins } from '../../components/Wallet/TagCoins';
 
 export default function WalletScreen() {
     const dtsHeader = {
@@ -22,7 +24,12 @@ export default function WalletScreen() {
             <HeaderTabs datos={dtsHeader} />
             
             <View style={styles.body}>
-                <Text>Cuerpo de cartera</Text>
+
+                <View style={{ flexDirection: 'row' }}>
+                    <TagCoins />
+                    
+                </View>
+                
             </View>
 
             <CopyrightLabel />
@@ -39,8 +46,7 @@ const styles = StyleSheet.create({
     },
     body: {
       flex:10,
-      alignItems: 'center',
-      justifyContent: 'center',
       width: '99%',
+      marginTop: 10,
     },
   });
